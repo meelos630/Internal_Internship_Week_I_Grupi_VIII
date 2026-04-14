@@ -1,0 +1,12 @@
+Day 1 - Internal Internship
+
+1. Installed C compiler / environment
+2. Created hello_world.c program
+3. Created student_profile.c program
+4. Learned basic Git workflow (branch, commit, push)
+
+Commands used:
+- git init
+- git add
+- git commit
+- git push
