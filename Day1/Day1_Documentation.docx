@@ -1,0 +1,70 @@
+Raporti i Ditës 1 – Internal Internship 
+
+
+Studenti: Majlind 
+Data: 14 Prill 2026
+Grupi: (Shkruaj numrin e grupit tënd këtu) 
+
+1. Përmbledhja e Ditës
+Sot kam filluar ditën e parë të praktikës "Internal Internship" të organizuar nga Code Invention dhe British Gymnasium of Technology. Qëllimi kryesor i ditës ishte konfigurimi i ambientit të punës, krijimi i strukturës së repository-t në GitHub dhe ekzekutimi i programeve të para në gjuhën C.
+
+2. Hapat e Ndjekur
+Gjatë kësaj dite kam realizuar këto veprime:
+
+
+Konfigurimi i Compiler-it: Për shkak të specifikave të pajisjes sime, kam përdorur compiler-in online "Programiz" për të shkruar dhe testuar kodin në C.
+
+
+Krijimi i Repository-t: Jam bashkuar në repository-n zyrtar të grupit tim me emrin Internal_Internship_Week_I_Grupi_X.
+
+
+Menaxhimi i Branch-ave: Kam krijuar branch-in tim personal të quajtur Majlind-Mbiemri për të siguruar që puna ime të mos përzihet me main branch.
+
+
+Organizimi i Folderëve: Kam krijuar folderin Day1 sipas kërkesave strikte të projektit.
+
+3. Skedarët e Punuar
+Brenda folderit Day1 kam dorëzuar këta skedarë:
+
+
+hello_world.c: Programi i parë që shfaq mesazhin "Hello, World!".
+
+
+student_profile.c: Një program që përdor variabla për të shfaqur emrin tim (Majlind) dhe moshën (17 vjeç).
+
+
+Day1_Documentation.docx: Ky dokument shpjegues.Raporti i Ditës 1 – Internal Internship 
+
+
+Studenti: Majlind 
+Data: 14 Prill 2026
+Grupi: (Shkruaj numrin e grupit tënd këtu) 
+
+1. Përmbledhja e Ditës
+Sot kam filluar ditën e parë të praktikës "Internal Internship" të organizuar nga Code Invention dhe British Gymnasium of Technology. Qëllimi kryesor i ditës ishte konfigurimi i ambientit të punës, krijimi i strukturës së repository-t në GitHub dhe ekzekutimi i programeve të para në gjuhën C.
+
+2. Hapat e Ndjekur
+Gjatë kësaj dite kam realizuar këto veprime:
+
+
+Konfigurimi i Compiler-it: Për shkak të specifikave të pajisjes sime, kam përdorur compiler-in online "Programiz" për të shkruar dhe testuar kodin në C.
+
+
+Krijimi i Repository-t: Jam bashkuar në repository-n zyrtar të grupit tim me emrin Internal_Internship_Week_I_Grupi_X.
+
+
+Menaxhimi i Branch-ave: Kam krijuar branch-in tim personal të quajtur Majlind-Mbiemri për të siguruar që puna ime të mos përzihet me main branch.
+
+
+Organizimi i Folderëve: Kam krijuar folderin Day1 sipas kërkesave strikte të projektit.
+
+3. Skedarët e Punuar
+Brenda folderit Day1 kam dorëzuar këta skedarë:
+
+
+hello_world.c: Programi i parë që shfaq mesazhin "Hello, World!".
+
+
+student_profile.c: Një program që përdor variabla për të shfaqur emrin tim (Majlind) dhe moshën (17 vjeç).
+
+
