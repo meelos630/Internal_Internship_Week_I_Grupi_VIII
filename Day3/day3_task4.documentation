@@ -1,0 +1,12 @@
+Programi përdor pointers për të lexuar, shfaqur dhe ndryshuar vlera numerike.
+
+Logjika:
+
+krijon variabla int dhe double
+përdor pointers për qasje në memorie
+ndryshon vlera përmes pointerit
+përdor if/else për analizë të rezultateve
+
+Testimi:
+Programi u testua me vlera pozitive, negative, zero dhe të mëdha për të verifikuar sjelljen.
+  https://bgtschool-my.sharepoint.com/:w:/g/personal/em256_bgt_school/IQBj0CY4jW2oS6bgJl9wc79rATJ5SyZQC9Za0bGfYklb1GA?e=0OIc2y
