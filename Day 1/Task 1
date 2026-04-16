@@ -1,1 +1,32 @@
+#include <stdio.h>
 
+int main() {
+    int age;
+    char initial;
+    float height;
+    double average;
+    short year = 2026;
+    long population = 1800000;
+
+    printf("16: ");
+    scanf("%d", &age);
+
+    printf("J.P: ");
+    scanf(" %c", &initial);
+
+    printf("1.68 : ");
+    scanf("%f", &height);
+
+    printf("4 : ");
+    scanf("%lf", &average);
+
+    printf("\n--- User Profile ---\n");
+    printf("Age: %d\n", age);
+    printf("Initial: %c\n", initial);
+    printf("Height: %.2f\n", height);
+    printf("Average: %.2lf\n", average);
+    printf("Year (short): %d\n", year);
+    printf("Population (long): %ld\n", population);
+
+    return 0;
+}
