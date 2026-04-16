@@ -1,0 +1,15 @@
+Programi analizon një interval numrash dhe numëron sa janë çift dhe tek. 
+
+Logjika: 
+
+përdor for loop për intervalin  
+
+përdor % për kontroll çift/tek  
+
+ruan numërues dhe shuma  
+
+krahason rezultatet në fund  
+
+Funksionimi: 
+Përdoruesi jep fillimin dhe fundin, programi llogarit statistikat dhe i shfaq në ekran. 
+https://bgtschool-my.sharepoint.com/:w:/g/personal/em256_bgt_school/IQB0v1obqTpGSINloi_bQLW-Ac9PdHTyycKMuwRrUmUbaLo?e=bsFFIU
