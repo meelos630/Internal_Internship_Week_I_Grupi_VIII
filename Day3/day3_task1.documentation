@@ -1,0 +1,13 @@
+Ky program merr një numër nga përdoruesi dhe krijon një pattern me yje ose numra.
+
+Logjika:
+
+përdor input me scanf
+kontrollon validitetin (1–12)
+përdor for loop për rreshta dhe kolona
+përdor if/else për zgjedhjen e pattern-it
+
+Funksionimi:
+Përdoruesi zgjedh madhësinë dhe llojin e pattern-it, pastaj programi e printon në ekran.
+https://bgtschool-my.sharepoint.com/:w:/g/personal/em256_bgt_school/IQARTmzRupzpTY_wBRlLeJapAXmcsnjfK1L8Dj-p1dRBXwM?e=XXvdVZ
+
