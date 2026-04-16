@@ -1,0 +1,12 @@
+Programi analizon një interval numrash dhe i ndan në dy kategori: numra që pjesëtohen me 3 dhe numra që pjesëtohen me 5 por jo me 3.
+
+Logjika:
+
+përdor for loop për intervalin
+përdor % për kushtet
+përdor if/else if për ndarje të qartë
+llogarit shuma dhe numërues
+
+Funksionimi:
+Përdoruesi jep intervalin dhe programi llogarit dhe krahason rezultatet për dy kategori.
+  https://bgtschool-my.sharepoint.com/:w:/g/personal/em256_bgt_school/IQDGZOvcYMOGQbSnfB5eizHmAYMTwbsW_3-vzBw0Uad4avk?e=uVYqXr
