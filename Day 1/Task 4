@@ -1,0 +1,33 @@
+int main() {
+    int mosha, opsioni;
+    char iniciali;
+    double piket;
+
+    scanf("%d", &mosha);
+    scanf(" %c", &iniciali);
+    scanf("%lf", &piket);
+    scanf("%d", &opsioni);
+
+    if (mosha >= 16 && mosha <= 20)
+        printf("Mosha OK\n");
+    else
+        printf("Mosha JO OK\n");
+
+    if (piket < 50)
+        printf("Shume ushtrim\n");
+    else if (piket < 80)
+        printf("Gati per vazhdim\n");
+    else
+        printf("Gati per sfide\n");
+
+    switch (opsioni) {
+        case 1: printf("Punetoria 1\n"); break;
+        case 2: printf("Punetoria 2\n"); break;
+        case 3: printf("Punetoria 3\n"); break;
+        default: printf("Gabim\n");
+    }
+
+    printf("Perfundoi programi\n");
+
+    return 0;
+}
