@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+    int a;
+    float b;
+
+    int *pA;
+    float *pB;
+
+    printf("Shkruaj nje vlere int: ");
+    scanf("%d", &a);
+
+    printf("Shkruaj nje vlere float: ");
+    scanf("%f", &b);
+
+    // lidhja e pointerave me adresat
+    pA = &a;
+    pB = &b;
+
+    printf("\n--- VLERAT FILLESTARE ---\n");
+    printf("a = %d\n", a);
+    printf("Adresa e a = %p\n", &a);
+    printf("Vlera nga pointer pA = %d\n", *pA);
+
+    printf("\nb = %.2f\n", b);
+    printf("Adresa e b = %p\n", &b);
+    printf("Vlera nga pointer pB = %.2f\n", *pB);
+
+    // ruajmë vlerën e vjetër për krahasim
+    int oldA = a;
+
+    // ndryshimi përmes pointer-it
+    *pA = *pA + 10;
+
+    printf("\n--- PAS NDRYSHIMIT ---\n");
+    printf("a (pas ndryshimit) = %d\n", a);
+
+    // kontrolli me if/else
+    if (a > oldA) {
+        printf("Vlera eshte rritur.\n");
+    } else if (a < oldA) {
+        printf("Vlera eshte zvogeluar.\n");
+    } else {
+        printf("Vlera ka mbetur e njejte.\n");
+    }
+
+    // kontroll shtese me interval
+    if (a >= 0 && a <= 50) {
+        printf("Vlera eshte ne intervalin 0 - 50.\n");
+    } else {
+        printf("Vlera eshte jashte intervalit 0 - 50.\n");
+    }
+
+    return 0;
+}
