@@ -1,1 +1,65 @@
+#include <stdio.h>
 
+int main() {
+    int start, end;
+    int sum3 = 0, count3 = 0;
+    int sum5not3 = 0, count5not3 = 0;
+
+    printf("Shkruaj vleren fillestare: ");
+    scanf("%d", &start);
+
+    printf("Shkruaj vleren perfundimtare: ");
+    scanf("%d", &end);
+
+    // kontrolli i intervalit
+    if (start > end) {
+        printf("Interval i pavlefshem!\n");
+        return 0;
+    }
+
+    for (int i = start; i <= end; i++) {
+
+        // kategoria 1: pjesëtohet me 3
+        if (i % 3 == 0) {
+            sum3 += i;
+            count3++;
+        }
+
+        // kategoria 2: pjesëtohet me 5 por JO me 3
+        else if (i % 5 == 0) {
+            sum5not3 += i;
+            count5not3++;
+        }
+    }
+
+    printf("\n--- REZULTATET ---\n");
+    printf("Intervali: %d - %d\n", start, end);
+
+    printf("\nNumrat qe pjesetohen me 3:\n");
+    printf("Numri: %d\n", count3);
+    printf("Shuma: %d\n", sum3);
+
+    printf("\nNumrat qe pjesetohen me 5 por jo me 3:\n");
+    printf("Numri: %d\n", count5not3);
+    printf("Shuma: %d\n", sum5not3);
+
+    // krahasimi i shumave
+    if (sum3 > sum5not3) {
+        printf("\nShuma e numrave qe pjesetohen me 3 eshte me e madhe.\n");
+    } else if (sum5not3 > sum3) {
+        printf("\nShuma e numrave qe pjesetohen me 5 (jo 3) eshte me e madhe.\n");
+    } else {
+        printf("\nShumat jane te barabarta.\n");
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+https://bgtschool-my.sharepoint.com/:w:/g/personal/jp265_bgt_school/IQC42qkWBzSrQrz0Q5_Q0zhJAfbkHb145Bx2mCqiDuDSM5w?e=582AcC
