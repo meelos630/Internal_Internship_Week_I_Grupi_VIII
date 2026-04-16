@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+// Enum me 4 nivele
+enum Level {
+    BEGINNER = 1,
+    INTERMEDIATE,
+    ADVANCED,
+    EXPERT
+};
+
+int main() {
+    int choice;
+    int validCount = 0;
+    int invalidCount = 0;
+
+    // Loop per 3 raste
+    for (int i = 1; i <= 3; i++) {
+
+        printf("\nZgjedh nje nivel (1-4): ");
+        printf("\n1 - Beginner\n2 - Intermediate\n3 - Advanced\n4 - Expert\n");
+        printf("Zgjedhja: ");
+        scanf("%d", &choice);
+
+        // Kontroll input
+        if (choice < 1 || choice > 4) {
+            printf("Zgjedhje e pavlefshme!\n");
+            invalidCount++;
+            continue;
+        }
+
+        validCount++;
+
+        // Lidhje me enum
+        enum Level level = choice;
+
+        // Switch per mesazhe
+        switch (level) {
+            case BEGINNER:
+                printf("Nivel fillestar. Filloni me bazat.\n");
+                break;
+            case INTERMEDIATE:
+                printf("Nivel mesatar. Vazhdoni me ushtrime.\n");
+                break;
+            case ADVANCED:
+                printf("Nivel i avancuar. Sfida me te veshtira.\n");
+                break;
+            case EXPERT:
+                printf("Nivel ekspert. Performanc e larte.\n");
+                break;
+        }
+    }
+
+    // Statistikat
+    printf("\n--- Statistikat ---\n");
+    printf("Zgjedhje valide: %d\n", validCount);
+    printf("Zgjedhje invalide: %d\n", invalidCount);
+
+    return 0;
+}
