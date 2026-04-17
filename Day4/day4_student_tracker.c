@@ -9,7 +9,7 @@ enum Status {
     PERFUNDUAR
 };
 
-// struct për student
+// struct
 struct Student {
     int id;
     char emri[50];
@@ -17,11 +17,31 @@ struct Student {
     enum Status status;
 };
 
-// array + count
 struct Student lista[MAX];
 int count = 0;
 
-// funksion me pointer (si kërkohet)
+// funksion për zgjedhje statusi me switch
+enum Status zgjedhStatus() {
+    int zgjedhja;
+
+    printf("Zgjedh statusin:\n");
+    printf("1. Nevojitet ushtrim\n");
+    printf("2. Ne progres\n");
+    printf("3. Perfunduaar\n");
+    printf("Zgjedhja: ");
+    scanf("%d", &zgjedhja);
+
+    switch(zgjedhja) {
+        case 1: return NEVOJITET_USHTRIM;
+        case 2: return NE_PROGRES;
+        case 3: return PERFUNDUAR;
+        default:
+            printf("Zgjedhje e pavlefshme! Status default: Nevojitet ushtrim\n");
+            return NEVOJITET_USHTRIM;
+    }
+}
+
+// shto student (me pointer)
 void shtoStudent(struct Student *s) {
     printf("ID: ");
     scanf("%d", &s->id);
@@ -32,14 +52,14 @@ void shtoStudent(struct Student *s) {
     printf("Progresi (0-100): ");
     scanf("%lf", &s->progresi);
 
-    // vendos status me if
-    if (s->progresi < 50) {
-        s->status = NEVOJITET_USHTRIM;
-    } else if (s->progresi < 80) {
-        s->status = NE_PROGRES;
-    } else {
-        s->status = PERFUNDUAR;
+    // validim progresi
+    if (s->progresi < 0 || s->progresi > 100) {
+        printf("Progres i pavlefshem! Vendoset 0.\n");
+        s->progresi = 0;
     }
+
+    // përdor enum për status
+    s->status = zgjedhStatus();
 }
 
 // shfaq studentet
@@ -52,11 +72,11 @@ void shfaqStudentet() {
     printf("\n--- LISTA E STUDENTEVE ---\n");
 
     for (int i = 0; i < count; i++) {
-        printf("\nStudenti %d\n", i + 1);
-        printf("ID: %d\n", lista[i].id);
+        printf("\nID: %d\n", lista[i].id);
         printf("Emri: %s\n", lista[i].emri);
         printf("Progresi: %.2lf\n", lista[i].progresi);
 
+        // switch për status
         switch(lista[i].status) {
             case NEVOJITET_USHTRIM:
                 printf("Status: Nevojitet ushtrim\n");
@@ -77,19 +97,25 @@ int main() {
     do {
         printf("\n--- MENU ---\n");
         printf("1. Shto student\n");
-        printf("2. Shfaq te gjithe studentet\n");
+        printf("2. Shfaq studentet\n");
         printf("0. Dil\n");
         printf("Zgjedhja: ");
         scanf("%d", &zgjedhja);
 
+        // validim menu
+        if (zgjedhja < 0 || zgjedhja > 2) {
+            printf("Zgjedhje e pavlefshme! Provo prap.\n");
+            continue;
+        }
+
         switch(zgjedhja) {
             case 1:
                 if (count < MAX) {
-                    shtoStudent(&lista[count]); // pointer
+                    shtoStudent(&lista[count]);
                     count++;
-                    printf("Studenti u shtua me sukses!\n");
+                    printf("Studenti u shtua!\n");
                 } else {
-                    printf("Lista eshte plot! Nuk mund te shtosh me.\n");
+                    printf("Lista eshte plot!\n");
                 }
                 break;
 
@@ -100,9 +126,6 @@ int main() {
             case 0:
                 printf("Dalje...\n");
                 break;
-
-            default:
-                printf("Zgjedhje e pavlefshme!\n");
         }
 
     } while (zgjedhja != 0);
