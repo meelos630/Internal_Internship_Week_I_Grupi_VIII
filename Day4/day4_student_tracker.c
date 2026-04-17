@@ -9,7 +9,7 @@ enum Status {
     PERFUNDUAR
 };
 
-// struct
+// struct për student
 struct Student {
     int id;
     char emri[50];
@@ -20,30 +20,30 @@ struct Student {
 struct Student lista[MAX];
 int count = 0;
 
-// funksion për zgjedhje statusi me switch
+// FUNKSION për zgjedhje statusi (switch)
 enum Status zgjedhStatus() {
-    int zgjedhja;
+    int zg;
 
-    printf("Zgjedh statusin:\n");
+    printf("\nZgjedh statusin:\n");
     printf("1. Nevojitet ushtrim\n");
     printf("2. Ne progres\n");
     printf("3. Perfunduaar\n");
     printf("Zgjedhja: ");
-    scanf("%d", &zgjedhja);
+    scanf("%d", &zg);
 
-    switch(zgjedhja) {
+    switch(zg) {
         case 1: return NEVOJITET_USHTRIM;
         case 2: return NE_PROGRES;
         case 3: return PERFUNDUAR;
         default:
-            printf("Zgjedhje e pavlefshme! Status default: Nevojitet ushtrim\n");
+            printf("Zgjedhje e pavlefshme! Vendoset default.\n");
             return NEVOJITET_USHTRIM;
     }
 }
 
-// shto student (me pointer)
+// shtim student
 void shtoStudent(struct Student *s) {
-    printf("ID: ");
+    printf("\nID: ");
     scanf("%d", &s->id);
 
     printf("Emri: ");
@@ -52,31 +52,29 @@ void shtoStudent(struct Student *s) {
     printf("Progresi (0-100): ");
     scanf("%lf", &s->progresi);
 
-    // validim progresi
     if (s->progresi < 0 || s->progresi > 100) {
         printf("Progres i pavlefshem! Vendoset 0.\n");
         s->progresi = 0;
     }
 
-    // përdor enum për status
     s->status = zgjedhStatus();
 }
 
 // shfaq studentet
 void shfaqStudentet() {
     if (count == 0) {
-        printf("Nuk ka regjistrime!\n");
+        printf("\nNuk ka regjistrime!\n");
         return;
     }
 
     printf("\n--- LISTA E STUDENTEVE ---\n");
 
     for (int i = 0; i < count; i++) {
-        printf("\nID: %d\n", lista[i].id);
+        printf("\nStudenti %d\n", i + 1);
+        printf("ID: %d\n", lista[i].id);
         printf("Emri: %s\n", lista[i].emri);
         printf("Progresi: %.2lf\n", lista[i].progresi);
 
-        // switch për status
         switch(lista[i].status) {
             case NEVOJITET_USHTRIM:
                 printf("Status: Nevojitet ushtrim\n");
@@ -91,6 +89,51 @@ void shfaqStudentet() {
     }
 }
 
+// RAPORT ANALITIK (TASK 3)
+void raporti() {
+    if (count == 0) {
+        printf("\n--- RAPORTI ---\n");
+        printf("Nuk ka te dhena per analize!\n");
+        return;
+    }
+
+    int perfunduar = 0;
+    double shuma = 0;
+    double max = lista[0].progresi;
+    double min = lista[0].progresi;
+
+    for (int i = 0; i < count; i++) {
+        shuma += lista[i].progresi;
+
+        if (lista[i].progresi > max)
+            max = lista[i].progresi;
+
+        if (lista[i].progresi < min)
+            min = lista[i].progresi;
+
+        if (lista[i].status == PERFUNDUAR)
+            perfunduar++;
+    }
+
+    double mesatarja = shuma / count;
+
+    printf("\n--- RAPORTI ANALITIK ---\n");
+    printf("Totali i regjistrimeve: %d\n", count);
+    printf("Te perfunduara: %d\n", perfunduar);
+    printf("Mesatarja e progresit: %.2lf\n", mesatarja);
+
+    if (mesatarja >= 80) {
+        printf("Gjendja: Shume e mire\n");
+    } else if (mesatarja >= 50) {
+        printf("Gjendja: Mesatare\n");
+    } else {
+        printf("Gjendja: Duhet permiresim\n");
+    }
+
+    printf("Vlera maksimale: %.2lf\n", max);
+    printf("Vlera minimale: %.2lf\n", min);
+}
+
 int main() {
     int zgjedhja;
 
@@ -98,13 +141,13 @@ int main() {
         printf("\n--- MENU ---\n");
         printf("1. Shto student\n");
         printf("2. Shfaq studentet\n");
+        printf("3. Raporti analitik\n");
         printf("0. Dil\n");
         printf("Zgjedhja: ");
         scanf("%d", &zgjedhja);
 
-        // validim menu
-        if (zgjedhja < 0 || zgjedhja > 2) {
-            printf("Zgjedhje e pavlefshme! Provo prap.\n");
+        if (zgjedhja < 0 || zgjedhja > 3) {
+            printf("Zgjedhje e pavlefshme!\n");
             continue;
         }
 
@@ -121,6 +164,10 @@ int main() {
 
             case 2:
                 shfaqStudentet();
+                break;
+
+            case 3:
+                raporti();
                 break;
 
             case 0:
