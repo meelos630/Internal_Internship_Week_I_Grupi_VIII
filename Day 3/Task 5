@@ -1,1 +1,48 @@
+enum Niveli { BEGINNER = 1, INTERMEDIATE, ADVANCED, EXPERT };
 
+int main() {
+    int zgjedhja;
+    int valid = 0, invalid = 0;
+
+    for (int i = 1; i <= 3; i++) {
+        printf("\nZgjedh nivelin per rastin %d (1-4): ", i);
+        scanf("%d", &zgjedhja);
+
+        enum Niveli niveli = zgjedhja;
+
+        switch (niveli) {
+            case BEGINNER:
+                printf("Ti je ne nivel BEGINNER.\n");
+                valid++;
+                break;
+
+            case INTERMEDIATE:
+                printf("Ti je ne nivel INTERMEDIATE.\n");
+                valid++;
+                break;
+
+            case ADVANCED:
+                printf("Ti je ne nivel ADVANCED.\n");
+                valid++;
+                break;
+
+            case EXPERT:
+                printf("Ti je ne nivel EXPERT.\n");
+                valid++;
+                break;
+
+            default:
+                printf("Zgjedhje e pavlefshme!\n");
+                invalid++;
+        }
+    }
+
+    printf("\n--- STATISTIKAT ---\n");
+    printf("Zgjedhje valide: %d\n", valid);
+    printf("Zgjedhje te pavlefshme: %d\n", invalid);
+
+    return 0;
+}
+
+
+https://bgtschool-my.sharepoint.com/:w:/g/personal/jp265_bgt_school/IQBtn-iqcvr7T6A88VpDhazsAVKvMOWA-cDN7R7Luz919ho?e=og77k7
