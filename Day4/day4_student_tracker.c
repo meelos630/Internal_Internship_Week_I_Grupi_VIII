@@ -9,7 +9,7 @@ enum Status {
     PERFUNDUAR
 };
 
-// struktura për student
+// struct për student
 struct Student {
     int id;
     char emri[50];
@@ -17,10 +17,11 @@ struct Student {
     enum Status status;
 };
 
+// array + count
 struct Student lista[MAX];
 int count = 0;
 
-// funksion me pointer
+// funksion me pointer (si kërkohet)
 void shtoStudent(struct Student *s) {
     printf("ID: ");
     scanf("%d", &s->id);
@@ -31,7 +32,7 @@ void shtoStudent(struct Student *s) {
     printf("Progresi (0-100): ");
     scanf("%lf", &s->progresi);
 
-    // vendos status automatikisht
+    // vendos status me if
     if (s->progresi < 50) {
         s->status = NEVOJITET_USHTRIM;
     } else if (s->progresi < 80) {
@@ -44,12 +45,15 @@ void shtoStudent(struct Student *s) {
 // shfaq studentet
 void shfaqStudentet() {
     if (count == 0) {
-        printf("Nuk ka te dhena!\n");
+        printf("Nuk ka regjistrime!\n");
         return;
     }
 
+    printf("\n--- LISTA E STUDENTEVE ---\n");
+
     for (int i = 0; i < count; i++) {
-        printf("\nID: %d\n", lista[i].id);
+        printf("\nStudenti %d\n", i + 1);
+        printf("ID: %d\n", lista[i].id);
         printf("Emri: %s\n", lista[i].emri);
         printf("Progresi: %.2lf\n", lista[i].progresi);
 
@@ -73,7 +77,7 @@ int main() {
     do {
         printf("\n--- MENU ---\n");
         printf("1. Shto student\n");
-        printf("2. Shfaq studentet\n");
+        printf("2. Shfaq te gjithe studentet\n");
         printf("0. Dil\n");
         printf("Zgjedhja: ");
         scanf("%d", &zgjedhja);
@@ -83,8 +87,9 @@ int main() {
                 if (count < MAX) {
                     shtoStudent(&lista[count]); // pointer
                     count++;
+                    printf("Studenti u shtua me sukses!\n");
                 } else {
-                    printf("Lista eshte plot!\n");
+                    printf("Lista eshte plot! Nuk mund te shtosh me.\n");
                 }
                 break;
 
