@@ -1,58 +1,65 @@
-#include <stdio.h>
-
 int main() {
     int a;
     float b;
 
+    // Pointerat
     int *pA;
     float *pB;
 
-    printf("Shkruaj nje vlere int: ");
+    // Input
+    printf("5: ");
     scanf("%d", &a);
 
-    printf("Shkruaj nje vlere float: ");
+    printf("3.14: ");
     scanf("%f", &b);
 
-    // lidhja e pointerave me adresat
+    // Caktimi i adresave
     pA = &a;
     pB = &b;
 
-    printf("\n--- VLERAT FILLESTARE ---\n");
-    printf("a = %d\n", a);
-    printf("Adresa e a = %p\n", &a);
-    printf("Vlera nga pointer pA = %d\n", *pA);
+    // Shfaqja e vlerave dhe adresave
+    printf("\n--- VLERAT FILLIMTARE ---\n");
+    printf("Vlera e a: %d\n", a);
+    printf("Adresa e a: %p\n", &a);
+    printf("Vlera e a nga pointer: %d\n", *pA);
 
-    printf("\nb = %.2f\n", b);
-    printf("Adresa e b = %p\n", &b);
-    printf("Vlera nga pointer pB = %.2f\n", *pB);
+    printf("\nVlera e b: %.2f\n", b);
+    printf("Adresa e b: %p\n", &b);
+    printf("Vlera e b nga pointer: %.2f\n", *pB);
 
-    // ruajmë vlerën e vjetër për krahasim
+    // Ruaj vlerat e vjetra
     int oldA = a;
+    float oldB = b;
 
-    // ndryshimi përmes pointer-it
+    // Ndryshimi përmes pointerave
     *pA = *pA + 10;
+    *pB = *pB * 2;
 
+    // Output pas ndryshimit
     printf("\n--- PAS NDRYSHIMIT ---\n");
-    printf("a (pas ndryshimit) = %d\n", a);
+    printf("a para: %d, a pas: %d\n", oldA, a);
+    printf("b para: %.2f, b pas: %.2f\n", oldB, b);
 
-    // kontrolli me if/else
+    // Kontroll me if/else për a
+    printf("\n--- KONTROLLI PER a ---\n");
     if (a > oldA) {
-        printf("Vlera eshte rritur.\n");
+        printf("Vlera e a eshte rritur.\n");
     } else if (a < oldA) {
-        printf("Vlera eshte zvogeluar.\n");
+        printf("Vlera e a eshte zvogeluar.\n");
     } else {
-        printf("Vlera ka mbetur e njejte.\n");
+        printf("Vlera e a eshte e njejte.\n");
     }
 
-    // kontroll shtese me interval
-    if (a >= 0 && a <= 50) {
-        printf("Vlera eshte ne intervalin 0 - 50.\n");
+    // Kontroll intervali për b
+    printf("\n--- KONTROLLI PER b ---\n");
+    if (b >= 0 && b <= 100) {
+        printf("b eshte ne intervalin 0 - 100.\n");
     } else {
-        printf("Vlera eshte jashte intervalit 0 - 50.\n");
+        printf("b eshte jashte intervalit 0 - 100.\n");
     }
 
     return 0;
 }
 
 
-https://bgtschool-my.sharepoint.com/:w:/g/personal/jp265_bgt_school/IQBp8sx_JEoGRI0y_12fypTcAeadqED5tR5GkB8iVg9LHqM?e=M5C7hu
+https://bgtschool-my.sharepoint.com/:w:/g/personal/jp265_bgt_school/IQBp8sx_JEoGRI0y_12fypTcAeadqED5tR5GkB8iVg9LHqM?e=1PjsPe
