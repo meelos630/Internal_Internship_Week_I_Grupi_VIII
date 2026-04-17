@@ -17,7 +17,8 @@ typedef struct {
     Status status;
 } Student;
 
-/* Utility */
+/* ---------- UTILITY ---------- */
+
 void clearBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -53,12 +54,7 @@ double getValidDouble() {
 Status getValidStatus() {
     int choice;
 
-    printf("Choose Status:\n");
-    printf("1. Not Started\n");
-    printf("2. In Progress\n");
-    printf("3. Completed\n");
-    printf("Choice: ");
-
+    printf("Choose Status:\n1. Not Started\n2. In Progress\n3. Completed\nChoice: ");
     choice = getValidInt();
 
     switch (choice) {
@@ -71,23 +67,21 @@ Status getValidStatus() {
     }
 }
 
-/* ADD */
+/* ---------- ADD ---------- */
+
 void addStudent(Student students[], int *count) {
     if (*count >= MAX_STUDENTS) {
-        printf("\nStorage full.\n");
+        printf("Storage full.\n");
         return;
     }
 
-    printf("\nEnter ID: ");
+    printf("Enter ID: ");
     int id = getValidInt();
-    if (id <= 0) {
-        printf("Invalid ID.\n");
-        return;
-    }
+    if (id <= 0) return;
 
     for (int i = 0; i < *count; i++) {
         if (students[i].id == id) {
-            printf("ID already exists.\n");
+            printf("ID exists.\n");
             return;
         }
     }
@@ -98,54 +92,44 @@ void addStudent(Student students[], int *count) {
 
     printf("Enter Name: ");
     fgets(students[*count].name, NAME_LENGTH, stdin);
-
-    int len = strlen(students[*count].name);
-    if (students[*count].name[len - 1] == '\n') {
-        students[*count].name[len - 1] = '\0';
-    }
+    students[*count].name[strcspn(students[*count].name, "\n")] = 0;
 
     printf("Enter Progress (0-100): ");
-    double progress = getValidDouble();
+    double p = getValidDouble();
+    if (p < 0 || p > 100) return;
 
-    if (progress < 0 || progress > 100) {
-        printf("Invalid progress.\n");
-        return;
-    }
+    students[*count].progress = p;
 
-    students[*count].progress = progress;
+    Status s = getValidStatus();
+    if (s == 0) return;
 
-    Status status = getValidStatus();
-    if (status == 0) return;
-
-    students[*count].status = status;
+    students[*count].status = s;
 
     (*count)++;
-
-    printf("Student added.\n");
 }
 
-/* SHOW */
+/* ---------- SHOW ---------- */
+
 void showStudents(Student students[], int count) {
     if (count == 0) {
-        printf("\nNo students.\n");
+        printf("No students.\n");
         return;
     }
 
-    printf("\n--- Students ---\n");
-
     for (int i = 0; i < count; i++) {
-        printf("\n------------------\n");
-        printf("ID: %d\n", students[i].id);
-        printf("Name: %s\n", students[i].name);
-        printf("Progress: %.2lf\n", students[i].progress);
-        printf("Status: %s\n", getStatusText(students[i].status));
+        printf("\nID: %d\nName: %s\nProgress: %.2lf\nStatus: %s\n",
+               students[i].id,
+               students[i].name,
+               students[i].progress,
+               getStatusText(students[i].status));
     }
 }
 
-/* REPORT */
+/* ---------- REPORT ---------- */
+
 void showReport(Student students[], int count) {
     if (count == 0) {
-        printf("\nNo data.\n");
+        printf("No data.\n");
         return;
     }
 
@@ -165,92 +149,63 @@ void showReport(Student students[], int count) {
 
     double avg = total / count;
 
-    printf("\n===== REPORT =====\n");
-    printf("Total: %d\n", count);
-    printf("Completed: %d\n", completed);
-    printf("Average: %.2lf\n", avg);
-    printf("Max: %.2lf\n", max);
-    printf("Min: %.2lf\n", min);
+    printf("\nTotal: %d\nCompleted: %d\nAverage: %.2lf\nMax: %.2lf\nMin: %.2lf\n",
+           count, completed, avg, max, min);
 
-    if (avg < 50) printf("Performance: LOW\n");
-    else if (avg < 80) printf("Performance: MEDIUM\n");
-    else printf("Performance: HIGH\n");
+    if (avg < 50) printf("LOW\n");
+    else if (avg < 80) printf("MEDIUM\n");
+    else printf("HIGH\n");
 }
 
-/* POINTER UPDATE (Task 4) */
+/* ---------- POINTER UPDATE ---------- */
+
 void updateStudent(Student *s) {
-    printf("\nUpdating Student ID: %d\n", s->id);
+    printf("New progress: ");
+    double p = getValidDouble();
+    if (p < 0 || p > 100) return;
 
-    printf("Enter new progress (0-100): ");
-    double newProgress = getValidDouble();
+    s->progress = p;
 
-    if (newProgress < 0 || newProgress > 100) {
-        printf("Invalid progress.\n");
-        return;
-    }
+    Status st = getValidStatus();
+    if (st == 0) return;
 
-    s->progress = newProgress;
-
-    Status newStatus = getValidStatus();
-    if (newStatus == 0) return;
-
-    s->status = newStatus;
-
-    printf("Student updated successfully.\n");
+    s->status = st;
 }
 
 void updateById(Student students[], int count) {
-    if (count == 0) {
-        printf("\nNo students.\n");
-        return;
-    }
-
-    printf("Enter ID to update: ");
+    printf("Enter ID: ");
     int id = getValidInt();
 
     for (int i = 0; i < count; i++) {
         if (students[i].id == id) {
-            updateStudent(&students[i]);  // POINTER USED HERE
+            updateStudent(&students[i]);
             return;
         }
     }
 
-    printf("Student not found.\n");
+    printf("Not found.\n");
 }
 
-/* SEARCH + EVALUATION */
-void evaluateStudent(Student s) {
-    printf("\n--- Evaluation ---\n");
+/* ---------- SEARCH ---------- */
 
-    if (s.progress < 50 && s.status == NOT_STARTED) {
-        printf("Warning: Falling behind.\n");
-    } else if (s.progress < 70 && s.status == IN_PROGRESS) {
+void evaluateStudent(Student s) {
+    if (s.progress < 50 && s.status == NOT_STARTED)
+        printf("Warning.\n");
+    else if (s.progress < 70)
         printf("Needs improvement.\n");
-    } else if (s.progress >= 80 && s.status == COMPLETED) {
+    else if (s.progress >= 80 && s.status == COMPLETED)
         printf("Excellent.\n");
-    } else {
-        printf("Normal progress.\n");
-    }
+    else
+        printf("OK.\n");
 }
 
 void searchStudent(Student students[], int count) {
-    if (count == 0) {
-        printf("\nNo students.\n");
-        return;
-    }
-
-    printf("\nSearch by ID: ");
+    printf("Enter ID: ");
     int id = getValidInt();
 
     for (int i = 0; i < count; i++) {
         if (students[i].id == id) {
-            printf("\nFound:\n");
-            printf("ID: %d\nName: %s\nProgress: %.2lf\nStatus: %s\n",
-                   students[i].id,
-                   students[i].name,
-                   students[i].progress,
-                   getStatusText(students[i].status));
-
+            printf("Found: %s %.2lf\n", students[i].name, students[i].progress);
             evaluateStudent(students[i]);
             return;
         }
@@ -259,50 +214,62 @@ void searchStudent(Student students[], int count) {
     printf("Not found.\n");
 }
 
-/* MAIN */
+/* ---------- SORT + RANK (TASK 6) ---------- */
+
+void sortStudents(Student students[], int count) {
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = i + 1; j < count; j++) {
+            if (students[i].progress < students[j].progress) {
+                Student temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+}
+
+void showRanking(Student students[], int count) {
+    if (count == 0) {
+        printf("No data.\n");
+        return;
+    }
+
+    printf("\nRANKING:\n");
+
+    for (int i = 0; i < count; i++) {
+        printf("#%d %s (%.2lf)\n",
+               i + 1,
+               students[i].name,
+               students[i].progress);
+    }
+}
+
+/* ---------- MAIN ---------- */
+
 int main() {
     Student students[MAX_STUDENTS];
     int count = 0;
     int choice;
 
     do {
-        printf("\n=====================\n");
-        printf("Student Tracker\n");
-        printf("=====================\n");
-        printf("1. Add Student\n");
-        printf("2. Show Students\n");
-        printf("3. Show Report\n");
-        printf("4. Search Student\n");
-        printf("5. Update Student\n");
-        printf("6. Exit\n");
-        printf("Choose: ");
-
+        printf("\n1.Add\n2.Show\n3.Report\n4.Search\n5.Update\n6.Rank\n7.Exit\nChoice: ");
         choice = getValidInt();
 
         switch (choice) {
-            case 1:
-                addStudent(students, &count);
-                break;
-            case 2:
-                showStudents(students, count);
-                break;
-            case 3:
-                showReport(students, count);
-                break;
-            case 4:
-                searchStudent(students, count);
-                break;
-            case 5:
-                updateById(students, count);
-                break;
+            case 1: addStudent(students, &count); break;
+            case 2: showStudents(students, count); break;
+            case 3: showReport(students, count); break;
+            case 4: searchStudent(students, count); break;
+            case 5: updateById(students, count); break;
             case 6:
-                printf("Exiting...\n");
+                sortStudents(students, count);
+                showRanking(students, count);
                 break;
-            default:
-                printf("Invalid option.\n");
+            case 7: break;
+            default: printf("Invalid.\n");
         }
 
-    } while (choice != 6);
+    } while (choice != 7);
 
     return 0;
 }
