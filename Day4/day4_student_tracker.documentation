@@ -1,146 +1,36 @@
-Console-based Student Progress Tracker (C) 
+📌 Titulli:
+
+Student Progress Tracker – C Console Application
+
+📌 Çfarë bën programi:
+
+Ky program menaxhon progresin e studentëve në console.
+Lejon shtimin, ndryshimin, fshirjen, kërkimin dhe analizimin e të dhënave.
+
+📌 Funksionalitetet:
+Shtim i studentëve
+Shfaqje e të dhënave
+Ndryshim i të dhënave
+Fshirje e studentëve
+Kërkim sipas ID
+Raport (mesatare)
+Renditje sipas progresit
+📌 Konceptet e përdorura:
+Variabla dhe tipe (int, double, char)
+if / else
+switch
+for loop
+struct
+enum
+pointer (indirekt në funksione)
+📌 Vështirësitë:
+Menaxhimi i fshirjes (zhvendosja e të dhënave)
+Kontrolli i input-it
+Organizimi i kodit pa përsëritje
+📌 Përfundim:
+
+Programi është i strukturuar mirë dhe përfshin të gjitha konceptet bazike të mësuara gjatë javës.
 
- 
-
-1. Përshkrimi i projektit 
-
-Ky projekt është një aplikacion i thjeshtë në C që menaxhon regjistrimet e progresit të studentëve në console. Programi lejon shtimin e studentëve, shfaqjen e tyre dhe gjenerimin e një raporti analitik mbi të dhënat e ruajtura. 
-
-Qëllimi kryesor është bashkimi i koncepteve bazike të C si variablat, strukturat, enum, loops, switch dhe if/else në një mini-projekt funksional. 
-
- 
-
-2. Struktura e të dhënave 
-
-Programi përdor: 
-
-struct Student për ruajtjen e të dhënave:  
-
-ID  
-
-Emri  
-
-Progresi  
-
-Statusi  
-
-enum Status për përfaqësimin e statusit:  
-
-NEVOJITET_USHTRIM  
-
-NE_PROGRES  
-
-PERFUNDUAR  
-
-array me madhësi fikse për ruajtjen e shumë studentëve.  
-
- 
-
-3. Logjika e programit 
-
-Programi është i ndërtuar me një menu kryesore që përdor switch për navigim: 
-
-Shto student  
-
-Shfaq studentët  
-
-Shfaq raportin analitik  
-
-Dil nga programi  
-
- 
-
-4. Funksionalitetet kryesore 
-
-Shtimi i studentit 
-
-Përdor input nga përdoruesi  
-
-Validon progresin (0–100)  
-
-Vendos status me enum dhe switch  
-
- 
-
-Shfaqja e studentëve 
-
-Përdor for loop për të kaluar nëpër array  
-
-Shfaq të dhënat në format të lexueshëm  
-
-Përdor switch për shfaqjen e statusit  
-
- 
-
-Raporti analitik 
-
-Programi llogarit: 
-
-Numrin total të studentëve  
-
-Numrin e studentëve të përfunduar  
-
-Mesataren e progresit  
-
-Vlerën maksimale dhe minimale  
-
-Përdor for loop për analizë dhe if/else për klasifikim të rezultateve. 
-
- 
-
-5. Validimi i input-it 
-
-Kontrollohet nëse lista është plot  
-
-Kontrollohet nëse menuja ka zgjedhje të vlefshme  
-
-Kontrollohet progresi (0–100)  
-
-Trajtohet rasti kur nuk ka të dhëna  
-
- 
-
-6. Koncepte të përdorura 
-
-Variabla dhe tipe bazike (int, double, char)  
-
-struct  
-
-enum  
-
-array  
-
-for loop  
-
-do-while loop  
-
-switch  
-
-if / else  
-
-pointer (në funksionin e shtimit)  
-
- 
-
-7. Testimi 
-
-Programi është testuar me: 
-
-Shtim të disa studentëve  
-
-Input të vlefshëm dhe të pavlefshëm  
-
-Lista bosh  
-
-Lista e mbushur (MAX)  
-
-Raport analitik pas disa regjistrimeve  
-
- 
-
-8. Përfundim 
-
-Ky projekt demonstron një sistem të thjeshtë por funksional për menaxhimin e të dhënave në C. Ai kombinon struktura të ndryshme të programimit dhe siguron bazë për zgjerime të mëtejshme si kërkimi, fshirja dhe përditësimi i regjistrimeve 
 
  
 
