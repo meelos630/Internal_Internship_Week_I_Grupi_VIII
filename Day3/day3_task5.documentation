@@ -1,0 +1,18 @@
+Programi përdor enum për të përfaqësuar nivelet dhe përdor switch për të reaguar sipas input-it. 
+
+Logjika: 
+
+enum me 4 vlera  
+
+input nga përdoruesi  
+
+kontroll me switch  
+
+loop për disa raste  
+
+numërim i rezultateve  
+
+Testimi: 
+U testua me input valide (1–4) dhe invalid (p.sh. 5, -1). 
+https://bgtschool-my.sharepoint.com/:w:/g/personal/em256_bgt_school/IQALbwEle2HwRKaoRRk_tAFbAZgs2yy_L3F5Qe01RrIoh9c?e=p0OeRK
+ 
