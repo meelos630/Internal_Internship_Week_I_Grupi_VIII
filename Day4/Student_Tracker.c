@@ -23,7 +23,7 @@ void clearBuffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-/* Convert enum to text */
+/* Enum to text */
 const char* getStatusText(Status status) {
     switch (status) {
         case NOT_STARTED: return "Not Started";
@@ -52,7 +52,7 @@ double getValidDouble() {
     return value;
 }
 
-/* Get valid status using switch */
+/* Status selection */
 Status getValidStatus() {
     int choice;
 
@@ -77,7 +77,7 @@ Status getValidStatus() {
 /* Add student */
 void addStudent(Student students[], int *count) {
     if (*count >= MAX_STUDENTS) {
-        printf("\nStorage full. Cannot add more students.\n");
+        printf("\nStorage full.\n");
         return;
     }
 
@@ -88,7 +88,6 @@ void addStudent(Student students[], int *count) {
         return;
     }
 
-    /* check duplicate ID */
     for (int i = 0; i < *count; i++) {
         if (students[i].id == id) {
             printf("ID already exists.\n");
@@ -108,11 +107,6 @@ void addStudent(Student students[], int *count) {
         students[*count].name[len - 1] = '\0';
     }
 
-    if (strlen(students[*count].name) == 0) {
-        printf("Name cannot be empty.\n");
-        return;
-    }
-
     printf("Enter Progress (0-100): ");
     double progress = getValidDouble();
 
@@ -130,21 +124,20 @@ void addStudent(Student students[], int *count) {
 
     (*count)++;
 
-    printf("Student added successfully.\n");
+    printf("Student added.\n");
 }
 
-/* Show all students */
+/* Show students */
 void showStudents(Student students[], int count) {
     if (count == 0) {
-        printf("\nNo students stored.\n");
+        printf("\nNo students.\n");
         return;
     }
 
-    printf("\n--- Student List ---\n");
+    printf("\n--- Students ---\n");
 
     for (int i = 0; i < count; i++) {
         printf("\n------------------\n");
-        printf("Student #%d\n", i + 1);
         printf("ID: %d\n", students[i].id);
         printf("Name: %s\n", students[i].name);
         printf("Progress: %.2lf\n", students[i].progress);
@@ -152,6 +145,54 @@ void showStudents(Student students[], int count) {
     }
 }
 
+/* NEW: ANALYSIS REPORT */
+void showReport(Student students[], int count) {
+    if (count == 0) {
+        printf("\nNo data for analysis.\n");
+        return;
+    }
+
+    int completed = 0;
+    double totalProgress = 0;
+    double max = students[0].progress;
+    double min = students[0].progress;
+
+    for (int i = 0; i < count; i++) {
+        totalProgress += students[i].progress;
+
+        if (students[i].status == COMPLETED) {
+            completed++;
+        }
+
+        if (students[i].progress > max) {
+            max = students[i].progress;
+        }
+
+        if (students[i].progress < min) {
+            min = students[i].progress;
+        }
+    }
+
+    double average = totalProgress / count;
+
+    printf("\n===== REPORT =====\n");
+    printf("Total students: %d\n", count);
+    printf("Completed: %d\n", completed);
+    printf("Average progress: %.2lf\n", average);
+    printf("Max progress: %.2lf\n", max);
+    printf("Min progress: %.2lf\n", min);
+
+    /* classification */
+    if (average < 50) {
+        printf("Overall performance: LOW\n");
+    } else if (average < 80) {
+        printf("Overall performance: MEDIUM\n");
+    } else {
+        printf("Overall performance: HIGH\n");
+    }
+}
+
+/* MAIN */
 int main() {
     Student students[MAX_STUDENTS];
     int count = 0;
@@ -159,11 +200,12 @@ int main() {
 
     do {
         printf("\n=====================\n");
-        printf("Student Progress Tracker\n");
+        printf("Student Tracker\n");
         printf("=====================\n");
         printf("1. Add Student\n");
         printf("2. Show Students\n");
-        printf("3. Exit\n");
+        printf("3. Show Report\n");
+        printf("4. Exit\n");
         printf("Choose: ");
 
         choice = getValidInt();
@@ -176,13 +218,16 @@ int main() {
                 showStudents(students, count);
                 break;
             case 3:
+                showReport(students, count);
+                break;
+            case 4:
                 printf("Exiting...\n");
                 break;
             default:
-                printf("Invalid menu option.\n");
+                printf("Invalid option.\n");
         }
 
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
