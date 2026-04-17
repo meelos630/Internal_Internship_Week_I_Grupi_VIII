@@ -2,38 +2,38 @@
 
 int main() {
     int a;
-    float b;
+    double b;
 
     // Input
     printf("Shkruaj nje numer integer: ");
     scanf("%d", &a);
 
-    printf("Shkruaj nje numer float: ");
-    scanf("%f", &b);
+    printf("Shkruaj nje numer double: ");
+    scanf("%lf", &b);
 
-    // Pointers
+    // Pointer
     int *pA = &a;
-    float *pB = &b;
+    double *pB = &b;
 
     // Print fillestar
     printf("\n--- Vlerat fillestare ---\n");
-    printf("a = %d, adresa = %p, vlera nga pointer = %d\n", a, pA, *pA);
-    printf("b = %.2f, adresa = %p, vlera nga pointer = %.2f\n", b, pB, *pB);
+    printf("a = %d | adresa = %p | nga pointer = %d\n", a, &a, *pA);
+    printf("b = %.2lf | adresa = %p | nga pointer = %.2lf\n", b, &b, *pB);
 
-    // Ruaj vlerat para ndryshimit
+    // Ruaj vlerat fillestare
     int oldA = a;
-    float oldB = b;
+    double oldB = b;
 
-    // Ndryshim me pointer
-    *pA = *pA + 10;
-    *pB = *pB * 2;
+    // Ndryshim permes pointer
+    *pA = *pA + 5;
+    *pB = *pB - 2.5;
 
     // Print pas ndryshimit
     printf("\n--- Pas ndryshimit ---\n");
-    printf("a = %d (ishte %d)\n", a, oldA);
-    printf("b = %.2f (ishte %.2f)\n", b, oldB);
+    printf("a i ri = %d | ishte = %d\n", a, oldA);
+    printf("b i ri = %.2lf | ishte = %.2lf\n", b, oldB);
 
-    // Kontroll me if/else
+    // Analiza me if/else
     printf("\n--- Analiza ---\n");
 
     if (a > oldA) {
@@ -41,7 +41,7 @@ int main() {
     } else if (a < oldA) {
         printf("a eshte zvogeluar.\n");
     } else {
-        printf("a ka mbetur e njejte.\n");
+        printf("a nuk ka ndryshuar.\n");
     }
 
     if (b > oldB) {
@@ -49,14 +49,14 @@ int main() {
     } else if (b < oldB) {
         printf("b eshte zvogeluar.\n");
     } else {
-        printf("b ka mbetur e njejte.\n");
+        printf("b nuk ka ndryshuar.\n");
     }
 
     // Kontroll intervali
-    if (a >= 0 && a <= 100) {
-        printf("a eshte brenda intervalit 0 - 100.\n");
+    if (a >= -10 && a <= 50) {
+        printf("a eshte brenda intervalit [-10, 50]\n");
     } else {
-        printf("a eshte jashte intervalit 0 - 100.\n");
+        printf("a eshte jashte intervalit [-10, 50]\n");
     }
 
     return 0;
