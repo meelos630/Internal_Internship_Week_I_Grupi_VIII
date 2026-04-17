@@ -21,7 +21,7 @@ struct Student {
 struct Student lista[MAX];
 int count = 0;
 
-// ================= TASK 2: STATUS =================
+// ================= STATUS =================
 enum Status zgjedhStatus() {
     int z;
     printf("\nZgjedh statusin:\n");
@@ -41,7 +41,7 @@ enum Status zgjedhStatus() {
     }
 }
 
-// ================= TASK 1: SHTIM =================
+// ================= SHTO =================
 void shtoStudent(struct Student *s) {
     printf("\nID: ");
     scanf("%d", &s->id);
@@ -60,55 +60,46 @@ void shtoStudent(struct Student *s) {
     s->status = zgjedhStatus();
 }
 
-// ================= TASK 4: POINTER UPDATE REAL =================
-// ndryshon progresin real përmes pointer-it
+// ================= POINTER UPDATE =================
 void updateProgres(struct Student *s) {
     double ri;
-
     printf("\nProgresi aktual: %.2lf\n", s->progresi);
     printf("Vendos progres te ri: ");
     scanf("%lf", &ri);
 
-    // ndryshim REAL përmes pointer-it
     s->progresi = ri;
 
-    if (s->progresi < 50)
-        s->status = NEVOJITET_USHTRIM;
-    else if (s->progresi < 80)
-        s->status = NE_PROGRES;
-    else
-        s->status = PERFUNDUAR;
+    if (ri < 50) s->status = NEVOJITET_USHTRIM;
+    else if (ri < 80) s->status = NE_PROGRES;
+    else s->status = PERFUNDUAR;
 
     printf("U perditesua me sukses!\n");
 }
 
-// ================= TASK 5: SEARCH =================
+// ================= SEARCH =================
 void kerkoStudent() {
-    int id;
-    int found = 0;
-
-    printf("\nShkruaj ID per kerkim: ");
+    int id, found = 0;
+    printf("\nShkruaj ID: ");
     scanf("%d", &id);
 
     for (int i = 0; i < count; i++) {
         if (lista[i].id == id) {
-            printf("\n--- U GJET ---\n");
-            printf("Emri: %s\n", lista[i].emri);
+            printf("\nEmri: %s\n", lista[i].emri);
             printf("Progresi: %.2lf\n", lista[i].progresi);
 
             if (lista[i].progresi < 50)
-                printf("PARALAJMERIM: Rrezik deshtimi!\n");
+                printf("PARALAJMERIM: Rrezik!\n");
             else if (lista[i].progresi >= 80)
                 printf("REKOMANDIM: Shume mire!\n");
             else
-                printf("INFO: Ne progres normal.\n");
+                printf("Ne progres normal.\n");
 
             found = 1;
         }
     }
 
     if (!found)
-        printf("Nuk u gjet student!\n");
+        printf("Nuk u gjet!\n");
 }
 
 // ================= SHFAQ =================
@@ -119,21 +110,8 @@ void shfaq() {
     }
 
     for (int i = 0; i < count; i++) {
-        printf("\nID: %d\n", lista[i].id);
-        printf("Emri: %s\n", lista[i].emri);
-        printf("Progresi: %.2lf\n", lista[i].progresi);
-
-        switch(lista[i].status) {
-            case NEVOJITET_USHTRIM:
-                printf("Status: Nevojitet ushtrim\n");
-                break;
-            case NE_PROGRES:
-                printf("Status: Ne progres\n");
-                break;
-            case PERFUNDUAR:
-                printf("Status: Perfunduaar\n");
-                break;
-        }
+        printf("\nID: %d | Emri: %s | Progresi: %.2lf\n",
+               lista[i].id, lista[i].emri, lista[i].progresi);
     }
 }
 
@@ -145,45 +123,63 @@ void raport() {
     }
 
     double sum = 0, max = lista[0].progresi, min = lista[0].progresi;
-    int perf = 0;
 
     for (int i = 0; i < count; i++) {
         sum += lista[i].progresi;
 
-        if (lista[i].progresi > max)
-            max = lista[i].progresi;
-
-        if (lista[i].progresi < min)
-            min = lista[i].progresi;
-
-        if (lista[i].status == PERFUNDUAR)
-            perf++;
+        if (lista[i].progresi > max) max = lista[i].progresi;
+        if (lista[i].progresi < min) min = lista[i].progresi;
     }
 
     printf("\n--- RAPORT ---\n");
-    printf("Totali: %d\n", count);
-    printf("Te perfunduara: %d\n", perf);
     printf("Mesatarja: %.2lf\n", sum / count);
     printf("Max: %.2lf\n", max);
     printf("Min: %.2lf\n", min);
 }
 
-// ================= MAIN MENU =================
+// ================= TASK 6: RENDITJE =================
+void renditSipasProgresit() {
+    if (count == 0) {
+        printf("\nNuk ka te dhena!\n");
+        return;
+    }
+
+    struct Student temp;
+
+    // Bubble sort (nga me i madhi te me i vogli)
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = 0; j < count - i - 1; j++) {
+            if (lista[j].progresi < lista[j+1].progresi) {
+                temp = lista[j];
+                lista[j] = lista[j+1];
+                lista[j+1] = temp;
+            }
+        }
+    }
+
+    printf("\n--- RENDITJA (TOP STUDENTS) ---\n");
+    for (int i = 0; i < count; i++) {
+        printf("%d. %s - %.2lf\n", i+1, lista[i].emri, lista[i].progresi);
+    }
+}
+
+// ================= MAIN =================
 int main() {
     int z;
 
     do {
-        printf("\n--- MENU ---\n");
+        printf("\n===== MENU =====\n");
         printf("1. Shto student\n");
         printf("2. Shfaq\n");
         printf("3. Raport\n");
-        printf("4. Update progres (POINTER)\n");
+        printf("4. Update progres\n");
         printf("5. Kerko student\n");
+        printf("6. Rendit sipas progresit\n");
         printf("0. Dil\n");
         printf("Zgjedhja: ");
         scanf("%d", &z);
 
-        if (z < 0 || z > 5) {
+        if (z < 0 || z > 6) {
             printf("Gabim!\n");
             continue;
         }
@@ -198,42 +194,29 @@ int main() {
                 }
                 break;
 
-            case 2:
-                shfaq();
-                break;
+            case 2: shfaq(); break;
+            case 3: raport(); break;
 
-            case 3:
-                raport();
-                break;
+            case 4: {
+                int id, found = 0;
+                printf("ID: ");
+                scanf("%d", &id);
 
-            case 4:
-                if (count == 0) {
-                    printf("Ska te dhena!\n");
-                } else {
-                    int id;
-                    printf("Shkruaj ID per update: ");
-                    scanf("%d", &id);
-
-                    int found = 0;
-                    for (int i = 0; i < count; i++) {
-                        if (lista[i].id == id) {
-                            updateProgres(&lista[i]); // POINTER REAL
-                            found = 1;
-                        }
+                for (int i = 0; i < count; i++) {
+                    if (lista[i].id == id) {
+                        updateProgres(&lista[i]);
+                        found = 1;
                     }
-
-                    if (!found)
-                        printf("Nuk u gjet student!\n");
                 }
-                break;
 
-            case 5:
-                kerkoStudent();
+                if (!found) printf("Nuk u gjet!\n");
                 break;
+            }
 
-            case 0:
-                printf("Dalje...\n");
-                break;
+            case 5: kerkoStudent(); break;
+            case 6: renditSipasProgresit(); break;
+
+            case 0: printf("Dalje...\n"); break;
         }
 
     } while (z != 0);
