@@ -1,0 +1,18 @@
+Programi është një sistem i thjeshtë për menaxhimin e progresit të studentëve. 
+
+Logjika: 
+
+përdor struct për të ruajtur të dhëna  
+
+përdor enum për status  
+
+përdor switch për menu  
+
+përdor loop për vazhdim të programit  
+
+përdor pointer në funksion për shtim  
+
+Testimi: 
+U testua me disa studentë, me progres të ndryshëm (0–100). 
+
+ https://bgtschool-my.sharepoint.com/:w:/g/personal/em256_bgt_school/IQCMkRQycARCRpecMV_cU9O3AR92Mgnu2VbjQlVsrypT8B4?e=GeOenA
